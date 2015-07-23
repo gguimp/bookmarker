@@ -75,4 +75,9 @@ class BookmarksTable extends Table
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;
     }
+
+    public function findTagged(Query $query, array $options)
+    {
+        
+    }
 }

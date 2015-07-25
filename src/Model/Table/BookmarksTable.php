@@ -78,6 +78,15 @@ class BookmarksTable extends Table
 
     public function findTagged(Query $query, array $options)
     {
-        
+        $fields = [
+            'Bookmarks.id',
+            'Bookmarks.title',
+            'Bookmarks.url',];
+
+        return $this->find()
+            ->distinct($fields)
+            ->matching('Tags', function ($q) use ($options) {
+                return $q->where(['Tags.title IN' => $options['tags']]);
+            });
     }
 }
